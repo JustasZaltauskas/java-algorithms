@@ -1,8 +1,8 @@
 package DataStructures.DoublyLinkedList;
 
-class Node<T> {
-    Node<T> prev;
-    Node<T> next;
+public class Node<T> {
+    public Node<T> prev;
+    public Node<T> next;
     T val;
   
     public Node(T val) {

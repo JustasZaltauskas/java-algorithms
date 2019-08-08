@@ -103,21 +103,6 @@ class DoublyLinkedList<T extends Comparable<T>> {
     }
   }
 
-  public void reverse() {
-    Node<T> node = head;
-
-    while (node != null) {
-      if (node.next == null) {
-        head = node;
-      }
-
-      Node<T> temp = node.next;
-      node.next = node.prev;
-      node.prev = temp;
-      node = node.prev;
-    }
-  }
-
   public void insertSorted(T val) {
     if (head == null) {
       add(val);
@@ -187,35 +172,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
     }
   }
 
-  public void rotateCounterClockwise(int n) {
-    if (isEmpty()) {
-      return;
-    }
-
-    Node<T> tail = head;
-
-    while (tail.next != null) {
-      tail = tail.next;
-    }
-
-    if (head == tail) {
-      return;
-    }
-
-    for (int i = 0; i < n; i++) {
-      head.prev = tail;
-      tail.next = head;
-      head = head.next;
-      tail = tail.next;
-      tail.next = null;
-    }
-  }
-
   public static void main(String[] args) {
     DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
     List<Integer> arr = Arrays.asList(new Integer[]{1, 2, 3});
     list.addAll(arr);
-    list.rotateCounterClockwise(4);
     System.out.println(list);
   }
 }
