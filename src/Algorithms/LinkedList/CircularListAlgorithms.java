@@ -7,7 +7,7 @@ public class CircularListAlgorithms {
     /*
      https://www.geeksforgeeks.org/split-a-circular-linked-list-into-two-halves/
    */
-    public static Node[] split(Node pt) {
+    public static Node[] splitInTwoHalves(Node pt) {
         if (pt == null) {
             return null;
         }
