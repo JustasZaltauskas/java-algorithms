@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.lang.Comparable;
 
 public class LinkedList<E extends Comparable<E>> implements Deque<E> {
-    Node<E> head;
+    private Node<E> head;
     private Node<E> tail;
     private int size = 0;
 
@@ -17,7 +17,6 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     public LinkedList(Collection<E> c) {
         addAll(c);
     }
-
 
     public boolean isEmpty() {
         return head == null;
@@ -161,6 +160,26 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     @Override
     public E peek() {
         return head.val;
+    }
+
+    public int indexOf(Object o) {
+        if (isEmpty()) {
+            return -1;
+        }
+
+        Node current = head;
+        int index = 0;
+
+        while (current != null) {
+            if (current.equals(o)) {
+                return index;
+            }
+
+            current = current.next;
+            index++;
+        }
+
+        return -1;
     }
 }
   
