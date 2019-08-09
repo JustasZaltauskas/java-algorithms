@@ -1,42 +1,26 @@
 package DataStructures.LinkedList;
 
-import DataStructures.MiniCollection;
-import DataStructures.Queue.Queue;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.lang.Comparable;
 
-public class LinkedList<E extends Comparable<E>> implements MiniCollection<E>, Queue<E> {
+public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     Node<E> head;
     private Node<E> tail;
     private int size = 0;
-  
+
     public LinkedList() {
-      this.head = null;
-      this.tail = null;
+        this.head = null;
+        this.tail = null;
     }
 
-    public LinkedList(Collection<E> collection) {
-      addAll(collection);
+    public LinkedList(Collection<E> c) {
+        addAll(c);
     }
 
-    public void add(E x) {
-      Node<E> node = new Node(x, null);
-  
-      if (this.head == null) {
-        this.head = node;
-        this.tail = this.head;
-      } else {
-        this.tail.next = node;
-        this.tail = this.tail.next;
-      }
-
-      size++;
-    }
 
     public boolean isEmpty() {
-      return head == null;
+        return head == null;
     }
 
     public E peekFirst() {
@@ -49,27 +33,82 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E>, Q
 
     @Override
     public int size() {
-      return size;
+        return size;
     }
 
-    public boolean addFirst(E x) {
-         final Node<E> newNode = new Node<>(x, null);
+    @Override
+    public void add(E e) {
+        Node<E> node = new Node(e, null);
 
-         if (!isEmpty()) {
-           newNode.next = head;
-         }
-
-         head = newNode;
-         size++;
-         return true;
-      }
-
-    public void addAll(Collection<E> collection) {
-        for (E el : collection) {
-          add(el);
-          size++;
+        if (this.head == null) {
+            this.head = node;
+            this.tail = this.head;
+        } else {
+            this.tail.next = node;
+            this.tail = this.tail.next;
         }
-      }
+
+        size++;
+    }
+
+
+    @Override
+    public void addAll(Collection<E> c) {
+        for (E el : c) {
+            add(el);
+            size++;
+        }
+    }
+
+    public void addFirst(E e) {
+        Node<E> newNode = new Node<>(e, null);
+        newNode.next = head;
+        head = newNode;
+
+        if (head.next == null) {
+            tail = head;
+        }
+
+        size++;
+    }
+
+    @Override
+    public void addLast(E e) {
+        add(e);
+    }
+
+    @Override
+    public E removeFirst() {
+        return remove(head.val) ? head.val : null;
+    }
+
+    @Override
+    public E removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        Node current = head;
+
+        while (current.next != tail) {
+            current = current.next;
+        }
+
+        current.next = null;
+        tail = current;
+
+        return tail.val;
+    }
+
+    @Override
+    public E peekFirst(E e) {
+        return peek();
+    }
+
+    @Override
+    public E peekLast(E e) {
+        return tail.val;
+    }
 
     public boolean remove(Object o) {
         Node prev = null;
@@ -97,20 +136,20 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E>, Q
     }
 
     public String toString() {
-      String list = "";
-      Node<E> cur = this.head;
-  
-      while (cur != null) {
-        list = list.concat(cur.val.toString().concat(" "));
-        cur = cur.next;
-      }
-  
-      return list;
+        String list = "";
+        Node<E> cur = this.head;
+
+        while (cur != null) {
+            list = list.concat(cur.val.toString().concat(" "));
+            cur = cur.next;
+        }
+
+        return list;
     }
 
     public static void main(String[] args) {
-      LinkedList<Integer> list = new LinkedList<>();
-      list.addAll(Arrays.asList(new Integer[] { 3, 6, 9, 15, 30 }));
+        LinkedList<Integer> list = new LinkedList<>();
+        list.addAll(Arrays.asList(new Integer[]{3, 6, 9, 15, 30}));
     }
 
     @Override
