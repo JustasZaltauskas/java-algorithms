@@ -6,26 +6,29 @@ import java.util.Collection;
 
 public class LinkedQueue<E extends Comparable<E>> implements Queue<E> {
     private LinkedList<E> list;
-    private int size;
 
     public LinkedQueue() {
         list = new LinkedList<E>();
-        size = 0;
     }
 
     @Override
-    public boolean add(E e) {
-        return list.addFirst(e);
+    public void add(E e) {
+        list.addFirst(e);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public E remove() {
-        return null;
+        return list.remove();
     }
 
     @Override
-    public E element() {
-        return null;
+    public E peek() {
+        return list.peekFirst();
     }
 
     @Override
@@ -35,13 +38,11 @@ public class LinkedQueue<E extends Comparable<E>> implements Queue<E> {
 
     @Override
     public int size() {
-        return size;
+        return list.size();
     }
 
     @Override
-    public boolean addAll(Collection<E> c) {
+    public void addAll(Collection<E> c) {
         list.addAll(c);
-        size += c.size();
-        return true;
     }
 }

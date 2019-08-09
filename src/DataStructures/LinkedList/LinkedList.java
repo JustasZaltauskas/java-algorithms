@@ -1,12 +1,13 @@
 package DataStructures.LinkedList;
 
 import DataStructures.MiniCollection;
+import DataStructures.Queue.Queue;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.lang.Comparable;
 
-public class LinkedList<E extends Comparable<E>> implements MiniCollection<E> {
+public class LinkedList<E extends Comparable<E>> implements MiniCollection<E>, Queue<E> {
     Node<E> head;
     private Node<E> tail;
     private int size = 0;
@@ -20,7 +21,7 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E> {
       addAll(collection);
     }
 
-    public boolean add(E x) {
+    public void add(E x) {
       Node<E> node = new Node(x, null);
   
       if (this.head == null) {
@@ -32,14 +33,13 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E> {
       }
 
       size++;
-      return true;
     }
 
     public boolean isEmpty() {
       return head == null;
     }
 
-    public E peek() {
+    public E peekFirst() {
         return head == null ? null : head.val;
     }
 
@@ -64,14 +64,37 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E> {
          return true;
       }
 
-    public boolean addAll(Collection<E> collection) {
+    public void addAll(Collection<E> collection) {
         for (E el : collection) {
           add(el);
           size++;
         }
-
-        return true;
       }
+
+    public boolean remove(Object o) {
+        Node prev = null;
+        Node current = head;
+
+        while (current != null) {
+            if (current.equals(o)) {
+                if (prev == null) {
+                    head = head.next;
+                } else if (current.next == null) {
+                    tail = prev;
+                    tail.next = null;
+                } else {
+                    prev = current.next;
+                }
+
+                return true;
+            }
+
+            prev = current;
+            current = current.next;
+        }
+
+        return false;
+    }
 
     public String toString() {
       String list = "";
@@ -87,9 +110,18 @@ public class LinkedList<E extends Comparable<E>> implements MiniCollection<E> {
 
     public static void main(String[] args) {
       LinkedList<Integer> list = new LinkedList<>();
-      LinkedList<Integer> list2 = new LinkedList<>();
       list.addAll(Arrays.asList(new Integer[] { 3, 6, 9, 15, 30 }));
-      list2.addAll(Arrays.asList(new Integer[] { 10, 15, 30 })); 
     }
-  }
+
+    @Override
+    public E remove() {
+        E headVal = peekFirst();
+        return remove(headVal) ? headVal : null;
+    }
+
+    @Override
+    public E peek() {
+        return head.val;
+    }
+}
   

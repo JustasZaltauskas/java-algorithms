@@ -7,7 +7,9 @@ public interface MiniCollection<E> {
 
     int size();
 
-    boolean add(E e);
+    void add(E e);
 
-    boolean addAll(Collection<E> c);
+    void addAll(Collection<E> c);
+
+    boolean remove(Object o);
 }
