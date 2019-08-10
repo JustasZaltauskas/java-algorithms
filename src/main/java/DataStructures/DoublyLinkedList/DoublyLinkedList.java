@@ -10,7 +10,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
   Node<T> head;
 
   public void add(T val) {
-    Node<T> node = new Node<>(val);
+    Node<T> node = new Node(val);
 
     if (head == null) {
       head = node;
@@ -27,7 +27,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   public void addFirst(T val) {
-    Node<T> node = new Node<>(val);
+    Node<T> node = new Node(val);
     
     if (head == null) {
       add(val);
@@ -109,7 +109,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
       return;
     }
 
-    Node<T> node = new Node<>(val);
+    Node<T> node = new Node(val);
     Node<T> cur = head;
   
     if (head.val.compareTo(val) > 0) {
@@ -158,7 +158,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
       return;
     }
 
-    Set<T> found = new HashSet<>();
+    Set<T> found = new HashSet();
     Node<T> cur = head;
 
     while (cur != null) {
@@ -173,7 +173,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   public static void main(String[] args) {
-    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    DoublyLinkedList<Integer> list = new DoublyLinkedList();
     List<Integer> arr = Arrays.asList(new Integer[]{1, 2, 3});
     list.addAll(arr);
     System.out.println(list);

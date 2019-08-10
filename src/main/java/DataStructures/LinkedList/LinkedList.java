@@ -60,7 +60,7 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     }
 
     public void addFirst(E e) {
-        Node<E> newNode = new Node<>(e, null);
+        Node<E> newNode = new Node(e, null);
         newNode.next = head;
         head = newNode;
 
@@ -147,7 +147,7 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     }
 
     public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedList<Integer> list = new LinkedList();
         list.addAll(Arrays.asList(new Integer[]{3, 6, 9, 15, 30}));
     }
 
