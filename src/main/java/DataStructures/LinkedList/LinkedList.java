@@ -7,11 +7,10 @@ import java.lang.Comparable;
 public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     private Node<E> head;
     private Node<E> tail;
-    private int size = 0;
+    private int size;
 
     public LinkedList() {
-        this.head = null;
-        this.tail = null;
+        size = 0;
     }
 
     public LinkedList(Collection<E> c) {
@@ -55,7 +54,6 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
     public void addAll(Collection<E> c) {
         for (E el : c) {
             add(el);
-            size++;
         }
     }
 
@@ -95,6 +93,7 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
 
         current.next = null;
         tail = current;
+        size--;
 
         return tail.val;
     }
@@ -114,16 +113,17 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
         Node current = head;
 
         while (current != null) {
-            if (current.equals(o)) {
+            if (current.val.equals(o)) {
                 if (prev == null) {
                     head = head.next;
                 } else if (current.next == null) {
                     tail = prev;
                     tail.next = null;
                 } else {
-                    prev = current.next;
+                    prev.next = current.next;
                 }
 
+                size--;
                 return true;
             }
 
@@ -143,7 +143,7 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
             cur = cur.next;
         }
 
-        return list;
+        return list.trim();
     }
 
     public static void main(String[] args) {
@@ -171,7 +171,7 @@ public class LinkedList<E extends Comparable<E>> implements Deque<E> {
         int index = 0;
 
         while (current != null) {
-            if (current.equals(o)) {
+            if (current.val.equals(o)) {
                 return index;
             }
 
