@@ -6,7 +6,6 @@ public class BackspaceStringCompare {
         int sIdx = S.length() - 1;
         int tIdx = T.length() - 1;
 
-
         while (sIdx >= 0 || tIdx >= 0) {
             sIdx = executeBackspace(S, sIdx);
             tIdx = executeBackspace(T, tIdx);
