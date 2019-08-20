@@ -1,4 +1,4 @@
-package Algorithms;
+package Algorithms.String;
 
 // https://leetcode.com/problems/backspace-string-compare/
 public class BackspaceStringCompare {
@@ -7,7 +7,7 @@ public class BackspaceStringCompare {
         int tIdx = T.length() - 1;
 
 
-        while (sIdx >= 0 && tIdx >= 0) {
+        while (sIdx >= 0 || tIdx >= 0) {
             sIdx = executeBackspace(S, sIdx);
             tIdx = executeBackspace(T, tIdx);
             char s = sIdx >= 0 ? S.charAt(sIdx) : '#';
@@ -24,7 +24,7 @@ public class BackspaceStringCompare {
         return true;
     }
 
-    private static int executeBackspace(String S, int idx) {
+    private static int executeBackspace(String S, int idx)  {
         char backspace = '#';
         int bacspaces = 0;
 

@@ -1,4 +1,4 @@
-package Algorithms;
+package Algorithms.String;
 
 import org.junit.Test;
 
@@ -14,5 +14,6 @@ public class BackspaceStringCompareTest {
         assertTrue("Strings after deletion should be equal", BackspaceStringCompare.compare("a##c", "#a#c"));
         assertFalse("Strings after deletion should not be equal", BackspaceStringCompare.compare("a#c", "b"));
         assertFalse("Strings after deletion should not be equal", BackspaceStringCompare.compare("bbbextm", "bbb#extm"));
+        assertTrue("Strings after deletion should not be equal", BackspaceStringCompare.compare("####bbextm", "bbb#extm"));
     }
 }
