@@ -2,27 +2,17 @@ package Algorithms.Tree;
 
 import DataStructures.BinaryTree.Node;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 // https://leetcode.com/problems/maximum-depth-of-binary-tree
 public class MaxDepthBinaryTree {
-    public static int maxDepth(Node root) {
-        return helper(root, 0);
+    public static int recursive(Node root) {
+        return root == null ? 0 : 1 + Math.max(recursive(root.left), recursive(root.right));
     }
 
-    private static int helper(Node root, int max) {
-        if (root == null) {
-            return max;
-        }
-
-        max++;
-        int leftMax = helper(root.left, max);
-        int rightMax = helper(root.right, max);
-
-        return Math.max(leftMax, rightMax);
-    }
-
-    public static int maxDepthIterative(Node root) {
+    public static int dfs(Node root) {
         Stack<Node> stack = new Stack();
         Stack<Integer> maxStack = new Stack();
         int max = 0;
@@ -35,10 +25,36 @@ public class MaxDepthBinaryTree {
 
             if (node != null) {
                 max = Math.max(max, ++lastMax);
-                maxStack.push(lastMax);
-                maxStack.push(lastMax);
-                stack.push(node.left);
-                stack.push(node.right);
+
+                if (node.left != null) {
+                    maxStack.push(lastMax);
+                    stack.push(node.left);
+                }
+                if (node.right != null) {
+                    maxStack.push(lastMax);
+                    stack.push(node.right);
+                }
+            }
+        }
+
+        return max;
+    }
+
+    public static int bfs(Node root) {
+        if (root == null) return 0;
+        Queue<Node> Q = new LinkedList<>();
+        int max = 0;
+        Q.add(root);
+
+        while (!Q.isEmpty()) {
+            Node node;
+            int n = Q.size();
+            max++;
+
+            for (int i = 0; i < n; i++) {
+                node = Q.remove();
+                if (node.left != null) Q.add(node.left);
+                if (node.right != null) Q.add(node.right);
             }
         }
 

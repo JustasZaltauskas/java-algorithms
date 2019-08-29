@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MaxDepthBinaryTreeTest {
     Node root;
+    int expected = 4;
 
     @Before
     public void before() {
@@ -21,12 +22,16 @@ public class MaxDepthBinaryTreeTest {
     }
 
     @Test
-    public void maxDepth() {
-        assertEquals("Wrong binary tree depth", 4, MaxDepthBinaryTree.maxDepth(root));
+    public void recursive() {
+        assertEquals("Wrong binary tree depth", expected, MaxDepthBinaryTree.recursive(root));
     }
 
     @Test
-    public void maxDepthIterative() {
-        assertEquals("Wrong binary tree depth", 4, MaxDepthBinaryTree.maxDepthIterative(root));
+    public void dfs() {
+        assertEquals("Wrong binary tree depth", expected, MaxDepthBinaryTree.dfs(root));
+    }
+    @Test
+    public void bfs() {
+        assertEquals("Wrong binary tree depth", expected, MaxDepthBinaryTree.bfs(root));
     }
 }
