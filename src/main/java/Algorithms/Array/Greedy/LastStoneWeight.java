@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-C
+
 // https://leetcode.com/problems/last-stone-weight/
 public class LastStoneWeight {
     public static int find(int[] stones) {
