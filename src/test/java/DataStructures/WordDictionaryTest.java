@@ -1,5 +1,6 @@
-package DataStructures.Trie;
+package DataStructures;
 
+import DataStructures.Trie.WordDictionary;
 import org.junit.Assert;
 import org.junit.Test;
 
