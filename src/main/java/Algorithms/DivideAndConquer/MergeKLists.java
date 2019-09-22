@@ -24,7 +24,7 @@ public class MergeKLists {
             if (lists[minIdx] == null) isDone = true;
             else {
                 if (head == null) {
-                    head = new Node<E>(lists[minIdx].val);
+                    head = new Node(lists[minIdx].val);
                     tail = head;
                 } else {
                     tail.next = new Node(lists[minIdx].val);
