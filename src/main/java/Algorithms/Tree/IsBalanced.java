@@ -5,7 +5,7 @@ import DataStructures.BinaryTree.Node;
 // https://leetcode.com/problems/balanced-binary-tree/
 public class IsBalanced {
     // Top-down approach
-    // Time - O(N^2), Space O(N)
+    // Time - O(NlogN), Space O(N)
     public static boolean isBalanced(Node root) {
         if (root == null) return true;
         return Math.abs(getHeight(root.right) - getHeight(root.left)) <= 1 &&
